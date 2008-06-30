@@ -1,5 +1,5 @@
 <li id="recent_comments">
-<h2>Recent Comments</h2>
+<h2>最新评论</h2>
 <ul>
 	{% for comment in recent_comments %}
 	<li>{{ comment.author_with_url }} on <a href="/blog/post/{{ comment.post.key.id }}#c{{ comment.key.id }}">{{ comment.post.title }}</a></li>
