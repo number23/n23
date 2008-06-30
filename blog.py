@@ -1,50 +1,50 @@
-import sys
-import os
-import datetime
-import urllib2
-import wsgiref.handlers
+import sy
+import o
+import datetim
+import urllib
+import wsgiref.handler
 
-sys.path.append('modules')
-from base import *
-from models import *
-import PyRSS2Gen
-from theme import Theme, ThemeIterator
+sys.path.append('modules'
+from base import 
+from models import 
+import PyRSS2Ge
+from theme import Theme, ThemeIterato
 
-os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
-from google.appengine.ext.db import djangoforms
-from django.utils.html import linebreaks, escape, urlize
-from mimetypes import types_map
+os.environ['DJANGO_SETTINGS_MODULE'] = 'settings
+from google.appengine.ext.db import djangoform
+from django.utils.html import linebreaks, escape, urliz
+from mimetypes import types_ma
 
-class NewPost(BaseRequestHandler):
-	def get(self):
-		if self.chk_admin():
-			self.current_page = "new"
-			self.template_values.update({
-				'mode' : 'new',
-				})
-			self.render(self.theme.editpost_page)
+class NewPost(BaseRequestHandler)
+	def get(self)
+		if self.chk_admin()
+			self.current_page = "new
+			self.template_values.update(
+				'mode' : 'new'
+				}
+			self.render(self.theme.editpost_page
 
-	def post(self):
-		if self.chk_admin():
-			title = self.param('title')
-			content = self.param('post_content')
-			tags = split_tags(self.param('tags'))
+	def post(self)
+		if self.chk_admin()
+			title = self.param('title'
+			content = self.param('post_content'
+			tags = split_tags(self.param('tags')
 
-			try:
-				new_post(title = title, author = self.login_user, content = content, tags = tags)
+			try
+				new_post(title = title, author = self.login_user, content = content, tags = tags
 
-				self.redirect('/blog/')
-			except db.BadValueError, e:
-				self.redirect('/blog/')
+				self.redirect('/blog/'
+			except db.BadValueError, e
+				self.redirect('/blog/'
 
-class NewComment(BaseRequestHandler):
-	def post(self):
-		if self.chk_login():
-			content = self.param('comment_content')
-			postid = self.param('postid')
-			nick = self.param('nick')
-			site = self.param('site')
-			post = Post.get_by_id(int(postid))
+class NewComment(BaseRequestHandler)
+	def post(self)
+		if self.chk_login()
+			content = self.param('comment_content'
+			postid = self.param('postid'
+			nick = self.param('nick'
+			site = self.param('site'
+			post = Post.get_by_id(int(postid)
 
 			try:
 				comment = Comment(post = post, content = content, author = self.login_user)
