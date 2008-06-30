@@ -261,5 +261,8 @@ def change_user_info(user, nick, site):
 		userinfo.website = site
 		userinfo.put()
 	except Exception, e:
-		pass
+		pass
+
+# 2008-06-30 by No.0023 
+postIdPattern = re.compile('\d+$')
 
