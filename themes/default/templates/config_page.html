@@ -1,0 +1,17 @@
+{% extends theme.base %}
+
+{% block title %} Configuration - {{ config.blog_title }} {% endblock %}
+
+{% block content %}
+<form method="post">
+<table>
+{{ config_form }}
+<tr>
+<th>&nbsp;</th>
+<td>
+	<input type="submit" value="Update Settings" />
+</td>
+</tr>
+</table>
+</form>
+{% endblock %}

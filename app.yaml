@@ -1,0 +1,36 @@
+application: n23
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+
+- url: /blog
+  script: blog.py
+
+- url: /blog/.*
+  script: blog.py
+  
+- url: /themes/.+
+  script: themes.py  
+
+- url: /static
+  static_dir: static
+
+- url: /favicon\.ico
+  static_files: static/images/favicon.ico
+  upload: static/images/favicon.ico
+  
+#- url: /fetch.py
+#  script: fetch.py
+
+- url: /zipme
+  script: zipme.py
+    
+- url: /phoneBook/(.*)
+  script: phoneBook.py
+
+- url: /(.*)
+  script: main.py  
+  
+  

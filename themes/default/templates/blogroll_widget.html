@@ -1,0 +1,40 @@
+<li>
+	<h2>Blogroll</h2>
+	<script type="text/javascript">
+		<!--
+		function DeleteBlogLink(id, name){
+			if(confirm("Really delete \"" + name + "\"?")){
+				window.location = "/blog/delbloglink?delid=" + id;
+			}
+		}
+		//-->
+	</script>
+	<ul>
+		{% for blog in blogroll %}
+		{% if self.is_admin %}
+		<li style="position:relative;">
+			<a href="{{ blog.url }}" title="{{ blog.description|escape }}" target="_blank">{{ blog.text }}</a>
+			<span class="fakelink" style="position:absolute;top:0;right:0;color:#f00;" onclick="DeleteBlogLink('{{ blog.key.id }}', '{{ blog.text|escape }}');">x</span>
+		</li>
+		{% else %}
+		<li><a href="{{ blog.url }}" title="{{ blog.description|escape }}" target="_blank">{{ blog.text }}</a></li>
+		{% endif %}
+		{% endfor %}
+		{% if self.is_admin %} <li><span onclick="$('#addbloglink').toggle();" class="fakelink" style="font-weight:bold;color:#000;">Add</span></li> {% endif %}
+	</ul>
+	{% if self.is_admin %}
+	<form action="/blog/addbloglink" method="post">
+	<ul style="display:none" id="addbloglink">
+		<li>
+			<label for="bloglinkurl">URL</label><br />
+			<input type="text" name="url" id="bloglinkurl" value="http://" style="width:90%" /><br />
+			<label for="bloglinktext">Text</label><br />
+			<input type="text" name="text" id="bloglinktext" style="width:90%" /><br />
+			<label for="bloglinkdescription">Description</label><br />
+			<input type="text" name="description" id="bloglinkdescription" style="width:90%" /><br />
+			<input type="submit" value="Add" />
+		</li>
+	</ul>
+	</form>
+	{% endif %}
+</li>
