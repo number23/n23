@@ -43,3 +43,4 @@ def blogroll(values):
 		'tags' : tags,
 		})
 	return template.render(theme.tags_widget, values)
+	
