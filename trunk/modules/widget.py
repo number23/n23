@@ -37,4 +37,9 @@ def blogroll(values):
 		'blogroll' : roll,
 		})
 	return template.render(theme.blogroll_widget, values)
-
+def tags(values):
+	tags = Tag.all().order('-count')
+	values.update({
+		'tags' : tags,
+		})
+	return template.render(theme.tags_widget, values)
