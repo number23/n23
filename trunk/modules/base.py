@@ -36,8 +36,8 @@ class BaseRequestHandler(webapp.RequestHandler):
 			self.referer = None
 
 		self.template_values = {
-				'config' : config,
 				'self' : self,
+				'config' : config,
 				'theme' : self.theme,
 				'W' : self.widget,
 				}
@@ -56,7 +56,6 @@ class BaseRequestHandler(webapp.RequestHandler):
 		except:
 			global_vars['theme'] = Theme()
 			self.redirect('/blog/')
-
 
 	def get_login_url(self, from_referer=False):
 		if from_referer:
