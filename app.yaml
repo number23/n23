@@ -21,6 +21,10 @@ handlers:
   static_files: static/images/favicon.ico
   upload: static/images/favicon.ico
 
+- url: /robots\.txt
+  static_files: robots.txt
+  upload: robots.txt
+
 - url: /_admin/.*
   script: $PYTHON_LIB/google/appengine/ext/admin
   login: admin

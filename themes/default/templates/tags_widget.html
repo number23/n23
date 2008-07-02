@@ -1,8 +1,8 @@
 <li>
-	<h2>我的标签</h2>
+	<h2>分类标签</h2>
 	<ul>
 		{% for tag in tags %}
-		<li><a href="/blog/tag/{{ tag.name }}">{{ tag.name }}({{ tag.count }})</a></li>
+		<li><a href="/blog/tag/{{ tag.name }}">{{ tag.name }} ({{ tag.count }})</a></li>
 		{% endfor %}
 	</ul>
 </li>
