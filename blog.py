@@ -248,7 +248,7 @@ class Customize(BaseRequestHandler):
                 widget = djangoforms.forms.Select(choices = ThemeIterator()))
 
                 class Meta:
-                    model = Config
+                    model = config
                     exclude = ('last_config_time')
             config_form = ConfigForm(instance = config)
             self.template_values.update({
