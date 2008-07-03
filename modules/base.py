@@ -90,13 +90,12 @@ class BaseRequestHandler(webapp.RequestHandler):
             return False
     
     def log(self):
-        if not self.request.path.startswith('/blog/upload'):
-            al = AccessLogger(
-                    user = users.get_current_user(),
-                    remoteAddr = self.request.remote_addr, 
-                    queryPath = self.request.path
-                    )
-            al.put()         
+        al = AccessLogger(
+                user = users.get_current_user(),
+                remoteAddr = self.request.remote_addr, 
+                queryPath = self.request.path
+                )
+        al.put()         
 
 class Widget:
     def __init__(self, handler):
