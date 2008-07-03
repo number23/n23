@@ -1,7 +1,6 @@
-import os
 from google.appengine.ext import db
 
-from theme import Theme, ThemeIterator
+from theme import Theme
 
 __all__ = [
         'Config',
@@ -10,6 +9,7 @@ __all__ = [
         ]
 
 global_vars = {}
+
 
 class Config(db.Expando):
     blog_title = db.StringProperty(default = 'Blog')
@@ -39,4 +39,3 @@ if not config.default_host:
     config.put()
 
 global_vars['theme'] = Theme(config.theme)
-

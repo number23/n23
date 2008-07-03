@@ -5,22 +5,26 @@ import urllib2
 import wsgiref.handlers
 
 sys.path.append('modules')
-from base import *
-from models import *
-import PyRSS2Gen
-from theme import Theme, ThemeIterator
+from modules.base import *
+from modules.models import *
+from modules import PyRSS2Gen
+from modules.theme import Theme, ThemeIterator
+#from modules import filter
+#from modules.filter import register, default_filter
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 from google.appengine.ext.db import djangoforms
-from django.utils.html import linebreaks, escape, urlize
+#from django.utils.html import linebreaks, escape, urlize
 from mimetypes import types_map
 
+
 class NewPost(BaseRequestHandler):
+
     def get(self):
         if self.chk_admin():
             self.current_page = "new"
             self.template_values.update({
-                'mode' : 'new',
+                'mode': 'new',
                 })
             self.render(self.theme.editpost_page)
 
@@ -31,13 +35,16 @@ class NewPost(BaseRequestHandler):
             tags = split_tags(self.param('tags'))
 
             try:
-                new_post(title = title, author = self.login_user, content = content, tags = tags)
+                new_post(title = title, author = self.login_user,
+                         content = content, tags = tags)
 
                 self.redirect('/blog/')
             except db.BadValueError, e:
                 self.redirect('/blog/')
 
+
 class NewComment(BaseRequestHandler):
+
     def post(self):
         if self.chk_login():
             content = self.param('comment_content')
@@ -47,14 +54,18 @@ class NewComment(BaseRequestHandler):
             post = Post.get_by_id(int(postid))
 
             try:
-                comment = Comment(post = post, content = content, author = self.login_user)
+                comment = Comment(post = post,
+                                  content = content,
+                                  author = self.login_user)
                 comment.put()
                 change_user_info(self.login_user, nick, site)
                 self.redirect('/blog/post/%s' % postid)
             except db.BadValueError, e:
                 self.redirect('/blog/')
 
+
 class EditPost(BaseRequestHandler):
+
     def get(self):
         if self.chk_admin():
             self.current_page = "new"
@@ -62,8 +73,8 @@ class EditPost(BaseRequestHandler):
             postid = postIdPattern.findall(self.request.path)[0]
             post = Post.get_by_id(int(postid))
             self.template_values.update({
-                'post' : post,
-                'mode' : 'edit',
+                'post': post,
+                'mode': 'edit',
                 })
             self.render(self.theme.editpost_page)
 
@@ -71,11 +82,16 @@ class EditPost(BaseRequestHandler):
         if self.chk_admin():
             #postid = self.request.path[15:]
             postid = postIdPattern.findall(self.request.path)[0]
-            edit_post(postid = postid, title = self.param('title'), content = self.param('post_content'), tags = split_tags(self.param('tags')))
+            edit_post(postid = postid,
+                      title = self.param('title'),
+                      content = self.param('post_content'),
+                      tags = split_tags(self.param('tags')))
 
             self.redirect('/blog/')
 
+
 class EditComment(BaseRequestHandler):
+
     def get(self):
         # TODO
         self.redirect('/blog/')
@@ -84,7 +100,9 @@ class EditComment(BaseRequestHandler):
         # TODO
         self.redirect('/blog/')
 
+
 class DeletePost(BaseRequestHandler):
+
     def get(self):
         if self.chk_admin():
             postid = self.param('postid')
@@ -100,7 +118,9 @@ class DeletePost(BaseRequestHandler):
 
             self.redirect('/blog/')
 
+
 class DeleteComment(BaseRequestHandler):
+
     def get(self):
         if self.chk_login():
             commentid = self.param('commentid')
@@ -112,7 +132,9 @@ class DeleteComment(BaseRequestHandler):
             else:
                 self.redirect('/blog/')
 
+
 class PostList(BaseRequestHandler):
+
     def get(self):
         self.current_page = "home"
         page = 0
@@ -129,7 +151,8 @@ class PostList(BaseRequestHandler):
                 self.redirect('/static/pages/404.html')
                 return
 
-        posts = all_posts.order('-date').fetch(config.posts_per_page, offset = page * config.posts_per_page)
+        posts = all_posts.order('-date').fetch(config.posts_per_page,
+                offset = page * config.posts_per_page)
 
         show_prev = not (page == 0)
         show_next = not (page == max_page)
@@ -139,18 +162,20 @@ class PostList(BaseRequestHandler):
             show_next = False
 
         self.template_values.update({
-                'posts' : posts,
-                'show_prev' : show_prev,
-                'show_next' : show_next,
-                'show_page_panel' : show_prev or show_next,
-                'prev' : page - 1,
-                'next' : page + 1,
-                'max_page' : max_page,
+                'posts': posts,
+                'show_prev': show_prev,
+                'show_next': show_next,
+                'show_page_panel': show_prev or show_next,
+                'prev': page - 1,
+                'next': page + 1,
+                'max_page': max_page,
                 })
 
         self.render(self.theme.postlist_page)
 
+
 class PostListTag(BaseRequestHandler):
+
     def get(self):
         self.current_page = "home"
         page = 0
@@ -166,7 +191,8 @@ class PostListTag(BaseRequestHandler):
 
         all_posts = Post.all().filter('tags =', tag)
         max_page = (all_posts.count() - 1) / config.posts_per_page
-        posts = all_posts.order('-date').fetch(config.posts_per_page, offset = page * config.posts_per_page)
+        posts = all_posts.order('-date').fetch(config.posts_per_page,
+                offset = page * config.posts_per_page)
 
         show_prev = not (page == 0)
         show_next = not (page == max_page)
@@ -175,19 +201,21 @@ class PostListTag(BaseRequestHandler):
             self.redirect('/static/pages/404.html')
 
         self.template_values.update({
-                'tag' : tag,
-                'posts' : posts,
-                'show_prev' : show_prev,
-                'show_next' : show_next,
-                'show_page_panel' : show_prev or show_next,
-                'prev' : page - 1,
-                'next' : page + 1,
-                'max_page' : max_page,
+                'tag': tag,
+                'posts': posts,
+                'show_prev': show_prev,
+                'show_next': show_next,
+                'show_page_panel': show_prev or show_next,
+                'prev': page - 1,
+                'next': page + 1,
+                'max_page': max_page,
                 })
 
         self.render(self.theme.postlist_page)
 
+
 class ViewPost(BaseRequestHandler):
+
     def get(self):
         self.current_page = "home"
         #postid = self.request.path[11:]
@@ -199,41 +227,54 @@ class ViewPost(BaseRequestHandler):
             self.redirect('/static/pages/404.html')
         else:
             self.template_values.update({
-                    'post' : post,
-                    'comments' : comments,
+                    'post': post,
+                    'comments': comments,
                     })
 
             self.render(self.theme.viewpost_page)
 
+
 class Customize(BaseRequestHandler):
+
     def get(self):
         if self.chk_admin():
             self.current_page = "config"
-            # put the class definition here to avoid caching, because we need it list theme dir every time
+            # put the class definition here to avoid caching,
+            # because we need it list theme dir every time
+
             class ConfigForm(djangoforms.ModelForm):
-                theme = djangoforms.forms.CharField(widget = djangoforms.forms.Select(choices = ThemeIterator()))
+
+                theme = djangoforms.forms.CharField(
+                widget = djangoforms.forms.Select(choices = ThemeIterator()))
+
                 class Meta:
                     model = Config
                     exclude = ('last_config_time')
             config_form = ConfigForm(instance = config)
             self.template_values.update({
-                'config_form' : config_form,
+                'config_form': config_form,
                 })
 
             self.render(self.theme.config_page)
 
     def post(self):
         if self.chk_admin():
-            # put the class definition here to avoid caching, because we need it list theme dir every time
+            # put the class definition here to avoid caching,
+            # because we need it list theme dir every time
+
             class ConfigForm(djangoforms.ModelForm):
-                theme = djangoforms.forms.CharField(widget = djangoforms.forms.Select(choices = ThemeIterator()))
+                theme = djangoforms.forms.CharField(
+                widget = djangoforms.forms.Select(choices = ThemeIterator()))
+
                 class Meta:
                     model = Config
                     exclude = ('last_config_time')
-            config_form = ConfigForm(data = self.request.POST, instance = config)
+            config_form = ConfigForm(data = self.request.POST,
+                                     instance = config)
             if config_form.is_valid():
                 config_form.save(commit=False)
-                config.last_config_time = datetime.datetime.utcnow().replace(microsecond=0)
+                config.last_config_time = \
+                    datetime.datetime.utcnow().replace(microsecond=0)
                 config.put()
 
                 global_vars['theme'] = Theme(config.theme)
@@ -241,49 +282,55 @@ class Customize(BaseRequestHandler):
                 self.redirect('/blog/')
             else:
                 self.template_values.update({
-                    'config_form' : config_form,
+                    'config_form': config_form,
                     })
 
                 self.render(self.theme.config_page)
 
+
 class RssFead(BaseRequestHandler):
+
     def get(self):
         blog_items = []
         feed_title = config.blog_title
         if self.request.path.startswith('/blog/feed/tag/'):
             # here too, i need unquote twice -_-
-            tag = urllib2.unquote(urllib2.unquote(self.request.path[15:])).decode('utf-8')
+            tag = urllib2.unquote(urllib2.unquote(
+                self.request.path[15:])).decode('utf-8')
             feed_title += 'Tag: ' + tag
-            posts = Post.all().filter('tags = ', tag).order('-date').fetch(config.rss_posts)
+            posts = Post.all().filter('tags = ',
+                    tag).order('-date').fetch(config.rss_posts)
         elif self.request.path.startswith('/blog/feed'):
             posts = Post.all().order('-date').fetch(config.rss_posts)
 
         for post in posts:
-            post_url = '%s/blog/post/%d' % (self.request.host_url, post.key().id())
+            post_url = '%s/blog/post/%d' % (self.request.host_url,
+                                            post.key().id())
             blog_items.append(PyRSS2Gen.RSSItem(
                 title = post.title,
                 author = post.author.nickname(),
                 link = post_url,
-                #description = linebreaks(urlize(escape(post.content), nofollow=True)),
                 description = post.content,
                 pubDate = post.date,
                 guid = PyRSS2Gen.Guid(post_url),
-                categories = post.tags
-                )
-            )
+                categories = post.tags))
 
         rss = PyRSS2Gen.RSS2(
             title = config.blog_title,
             link = self.request.host_url + '/blog/',
-            description = 'latest %d posts of %s' % (min(len(blog_items), config.rss_posts), config.blog_title),
+            description = 'latest %d posts of %s' % (min(len(blog_items),
+                                                     config.rss_posts),
+                                                     config.blog_title),
             lastBuildDate = datetime.datetime.utcnow(),
-            items = blog_items
-            )
+            items = blog_items)
 
-        self.response.headers['Content-Type'] = 'application/rss+xml; charset=utf-8'
+        self.response.headers['Content-Type'] = \
+            'application/rss+xml; charset=utf-8'
         self.write(rss.to_xml(encoding='utf-8'))
 
+
 class LogInOut(BaseRequestHandler):
+
     def get(self):
         if self.request.path == '/blog/login':
             self.redirect(self.get_login_url(True))
@@ -291,7 +338,9 @@ class LogInOut(BaseRequestHandler):
         if self.request.path == '/blog/logout':
             self.redirect(self.get_logout_url(True))
 
+
 class Upload(BaseRequestHandler):
+
     def get(self):
         filename = self.request.path[13:]
         split = filename.rfind('.')
@@ -309,10 +358,11 @@ class Upload(BaseRequestHandler):
         else:
             ext = '.' + ext
             mimetype = 'application/octet-stream'
-            if types_map.has_key(ext):
+            if ext in types_map:
                 mimetype = types_map[ext]
             self.response.headers['Content-Type'] = mimetype
-            self.response.headers['Content-Disposition'] = 'inline; filename="' + file.orig_name.encode('utf-8') + '"'
+            self.response.headers['Content-Disposition'] = \
+                'inline; filename="' + file.orig_name.encode('utf-8') + '"'
             self.write(file.data)
 
     def post(self):
@@ -325,12 +375,13 @@ class Upload(BaseRequestHandler):
 
 
 class FileManager(BaseRequestHandler):
+
     def get(self):
         if self.chk_admin():
             self.current_page = "upload"
             files = UploadFile.all().order('-date')
             self.template_values.update({
-                'files' : files,
+                'files': files,
                 })
             self.render(self.theme.filemanager_page)
 
@@ -344,7 +395,9 @@ class FileManager(BaseRequestHandler):
 
             self.redirect('/blog/filemanager')
 
+
 class BlogRollManager(BaseRequestHandler):
+
     def get(self): # delete a link
         if self.chk_admin():
             delid = self.param('delid')
@@ -357,16 +410,21 @@ class BlogRollManager(BaseRequestHandler):
     def post(self): # add a link
         if self.chk_admin():
             try:
-                bloglink = BlogRoll(url = self.param('url'), text = self.param('text'), description = self.param('description'))
+                bloglink = BlogRoll(url = self.param('url'),
+                                    text = self.param('text'),
+                                    description = self.param('description'))
                 bloglink.put()
             except:
                 pass
 
             self.redirect(self.referer)
 
+
 class NotFound(BaseRequestHandler):
+
     def get(self):
         self.redirect('/static/pages/404.html')
+
 
 def main():
     webapp.template.register_template_library('filter')
@@ -403,4 +461,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
