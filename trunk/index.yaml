@@ -10,13 +10,13 @@ indexes:
 # automatically uploaded to the admin console when you next deploy
 # your application using appcfg.py.
 
-# Used 111 times in query history.
+# Used 120 times in query history.
 - kind: Comment
   properties:
   - name: date
     direction: desc
 
-# Used 2 times in query history.
+# Used 3 times in query history.
 - kind: Comment
   properties:
   - name: post
@@ -28,7 +28,7 @@ indexes:
   - name: date
     direction: desc
 
-# Used 204 times in query history.
+# Used 216 times in query history.
 - kind: Post
   properties:
   - name: date
@@ -47,7 +47,7 @@ indexes:
   - name: count
     direction: desc
 
-# Used 3 times in query history.
+# Used 4 times in query history.
 - kind: UploadFile
   properties:
   - name: date
