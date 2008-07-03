@@ -103,7 +103,7 @@ class BlogRoll(db.Model):
    description = db.StringProperty()
 
 class AccessLogger(db.Model):
-   user = db.UserProperty(required=True)
+   user = db.UserProperty()
    date = db.DateTimeProperty(auto_now_add=True)
    remoteAddr = db.StringProperty(required=True)
    queryPath = db.StringProperty(required=True)
