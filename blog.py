@@ -9,8 +9,7 @@ from modules.base import *
 from modules.models import *
 from modules import PyRSS2Gen
 from modules.theme import Theme, ThemeIterator
-#from modules import filter
-#from modules.filter import register, default_filter
+from modules.config import Config
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 from google.appengine.ext.db import djangoforms
