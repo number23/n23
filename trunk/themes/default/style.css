@@ -85,7 +85,7 @@ div#wrapper {
 
 #content {
 	float : left;
-	width : 740px;
+	width : 730px;
 }
 
 div.sidebar {
@@ -101,12 +101,12 @@ div.sidebar {
 }
 
 #page_panel {
-	margin : 0px 0px 0px 0px;
+	margin : 0px 0px 20px;
 	padding : 2px;
 }
 
 div.post {
-	margin : 30px 20px 50px 0;
+	margin : 30px 20px 10px 0pt;
 	padding : 2px;
 }
 
@@ -135,11 +135,11 @@ div.comment {
 }
 
 textarea {
-	width : 700px;
+	width : 690px;
 	height : 350px;
 }
 #title {
-	width : 700px;
+	width : 690px;
 }
 
 .postinfo, .commentinfo {
@@ -215,7 +215,6 @@ blockquote {
 	display:inline;
 }
 
-/* }}} */
 
 table {
 	font: 11px/24px Verdana, Arial, Helvetica, sans-serif;
