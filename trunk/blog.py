@@ -105,16 +105,7 @@ class DeletePost(BaseRequestHandler):
     def get(self):
         if self.chk_admin():
             postid = self.param('postid')
-            post = Post.get_by_id(int(postid))
-
-            comments = Comment.all().filter('post = ', post)
-            for comment in comments:
-                comment.delete()
-
-            if post:
-                update_tag_count(old_tags = post.tags, new_tags = [])
-                post.delete()
-
+            delete_post(postid)
             self.redirect('/blog/')
 
 
