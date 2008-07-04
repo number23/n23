@@ -31,7 +31,7 @@ input, textarea, select {
 
 div#wrapper {
 	margin : 0 auto;
-	width : 980px;
+	width : 940px;
 }
 
 #header {
@@ -85,7 +85,7 @@ div#wrapper {
 
 #content {
 	float : left;
-	width : 780px;
+	width : 740px;
 }
 
 div.sidebar {
@@ -135,11 +135,11 @@ div.comment {
 }
 
 textarea {
-	width : 730px;
+	width : 700px;
 	height : 350px;
 }
 #title {
-	width : 730px;
+	width : 700px;
 }
 
 .postinfo, .commentinfo {
