@@ -4,7 +4,7 @@ from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
 
 from config import global_vars, config
-from models import User, Post, Admin, AccessLogger
+from models import User, Post, Admin, AccessLogger, Comment, Tag
 from filter import default_filter
 from theme import Theme
 import widget
@@ -172,12 +172,16 @@ def edit_post(postid, title = None, content = None,
 
 
 def delete_post(postid):
-    # TODO we may need a logical delete here
     post = Post.get_by_id(int(postid))
-    old_tags = post.tags
-    post.delete()
+    if not post:
+        return
 
-    update_tag_count(old_tags = old_tags, new_tags = [])
+    comments = Comment.all().filter('post = ', post)
+    for comment in comments:
+        comment.delete()
+
+    post.delete()
+    update_tag_count(old_tags = post.tags, new_tags = [])
 
 
 def split_tags(s):
@@ -187,7 +191,6 @@ def split_tags(s):
 
 
 def update_tag_count(old_tags = None, new_tags = None):
-    from models import Post, Tag
     if old_tags == None and new_tags == None:
         tags = []
         posts = Post.all()
