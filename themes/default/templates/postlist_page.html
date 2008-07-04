@@ -17,13 +17,13 @@
 <br />
 <div id="page_panel">
 {% if show_prev %}
-<a href="/blog/{% if tag %}tag/{{ tag }}/{% endif %}page/{{ prev }}"><span style="font-size:9px;">&lt;&lt;</span> PREV</a>
+<a href="/blog/{% if tag %}tag/{{ tag }}/{% endif %}page/{{ prev }}"><span style="font-size:9px;">&lt;&lt;</span>上一页</a>
 {% endif %}
 {% if show_prev and show_next %}
 -
 {% endif %}
 {% if show_next %}
-<a href="/blog/{% if tag %}tag/{{ tag }}/{% endif %}page/{{ next }}">NEXT <span style="font-size:9px;">&gt;&gt;</span></a>
+<a href="/blog/{% if tag %}tag/{{ tag }}/{% endif %}page/{{ next }}">下一页<span style="font-size:9px;">&gt;&gt;</span></a>
 {% endif %}
 </div>
 {% endif %}

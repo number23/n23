@@ -10,44 +10,44 @@ indexes:
 # automatically uploaded to the admin console when you next deploy
 # your application using appcfg.py.
 
-# Used 174 times in query history.
+# Used 248 times in query history.
 - kind: Comment
   properties:
   - name: date
     direction: desc
 
-# Used 9 times in query history.
+# Used 20 times in query history.
 - kind: Comment
   properties:
   - name: post
   - name: date
 
-# Used 5 times in query history.
+# Used 8 times in query history.
 - kind: Greeting
   properties:
   - name: date
     direction: desc
 
-# Used 306 times in query history.
+# Used 363 times in query history.
 - kind: Post
   properties:
   - name: date
     direction: desc
 
-# Unused in query history -- copied from input.
+# Used 23 times in query history.
 - kind: Post
   properties:
   - name: tags
   - name: date
     direction: desc
 
-# Unused in query history -- copied from input.
+# Used 100 times in query history.
 - kind: Tag
   properties:
   - name: count
     direction: desc
 
-# Used 4 times in query history.
+# Used 8 times in query history.
 - kind: UploadFile
   properties:
   - name: date
