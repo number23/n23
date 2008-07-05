@@ -18,7 +18,7 @@ class MainPage(webapp.RequestHandler):
 def main():
     application = webapp.WSGIApplication(
                                        [('/', MainPage)],
-                                       debug=True)
+                                       debug=False)
     wsgiref.handlers.CGIHandler().run(application)
 
 if __name__ == "__main__":
