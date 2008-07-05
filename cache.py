@@ -23,6 +23,7 @@ class GetFile(webapp.RequestHandler):
                 format_date(config.last_config_time)
             cache_expires(self.response, max_age)
             self.response.set_status(304)
+            #logging.info('cache.py: 304')
             self.response.clear()
 
         elif self.request.path.startswith('/themes') or \
@@ -39,6 +40,7 @@ class GetFile(webapp.RequestHandler):
                 format_date(config.last_config_time)
                 cache_expires(self.response, max_age)
                 self.response.out.write(open(server_path, 'rb').read())
+                #logging.info('cache.py: read file: %s' % server_path)
             except Exception, e:
                 logging.info(e)
                 self.redirect('/static/pages/404.html')
