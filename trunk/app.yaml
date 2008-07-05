@@ -28,6 +28,15 @@ handlers:
   static_files: robots.txt
   upload: robots.txt
 
+- url: /google144e416da36fc6d1\.html
+  static_files: static/pages/google144e416da36fc6d1.html
+  upload: static/pages/google144e416da36fc6d1.html
+
+- url: /sitemap\.xml
+  static_files: sitemap.xml
+  upload: sitemap.xml
+
+
 - url: /_admin/.*
   script: $PYTHON_LIB/google/appengine/ext/admin
   login: admin
