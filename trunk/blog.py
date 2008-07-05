@@ -3,6 +3,7 @@ import os
 import datetime
 import urllib2
 import wsgiref.handlers
+import re
 
 sys.path.append('modules')
 from modules.base import *
@@ -12,8 +13,8 @@ from modules.theme import Theme, ThemeIterator
 from modules.config import Config
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
+from google.appengine.ext import db
 from google.appengine.ext.db import djangoforms
-#from django.utils.html import linebreaks, escape, urlize
 from mimetypes import types_map
 
 
@@ -34,10 +35,10 @@ class NewPost(BaseRequestHandler):
             tags = split_tags(self.param('tags'))
 
             try:
-                new_post(title = title, author = self.login_user,
-                         content = content, tags = tags)
+                postid = new_post(title = title, author = self.login_user,
+                                  content = content, tags = tags)
 
-                self.redirect('/blog/')
+                self.redirect('/blog/post/%d' % postid)
             except db.BadValueError, e:
                 self.redirect('/blog/')
 
@@ -86,7 +87,7 @@ class EditPost(BaseRequestHandler):
                       content = self.param('post_content'),
                       tags = split_tags(self.param('tags')))
 
-            self.redirect('/blog/')
+            self.redirect('/blog/post/%s' % postid)
 
 
 class EditComment(BaseRequestHandler):
@@ -127,80 +128,54 @@ class PostList(BaseRequestHandler):
 
     def get(self):
         self.current_page = "home"
-        page = 0
+        tag_pattern = re.compile('^/blog/tag/(.*)')
+        tag_list = tag_pattern.findall(self.request.path)
+        tag = ''
+        if tag_list:
+            tag = tag_list[0]
+            if tag.find('/') != -1:
+                tag = tag[:tag.find('/')]
+            tag = urllib2.unquote(urllib2.unquote(tag)).decode('utf-8')
+            all_posts = Post.all().filter('tags =', tag)
+        else:
+            all_posts = Post.all()
+
+        page_size = config.posts_per_page
+        max_page = (all_posts.count() + page_size - 1) / page_size
+        page = 1
+        page_pattern = re.compile('/page/(\d+)$')
+        pattern_list = page_pattern.findall(self.request.path)
+        if pattern_list:
+            page = int(pattern_list[0])
+        if page > max_page:
+            page = max_page
+        if page <= 0:
+            page = 1
+        offset = (page - 1) * page_size
+        posts = all_posts.order('-date').fetch(page_size, offset = offset)
+
         show_prev = False
         show_next = False
-
-        all_posts = Post.all()
-        max_page = (all_posts.count() - 1) / config.posts_per_page
-
-        if self.request.path.startswith('/blog/page/'):
-            page = int(self.request.path[11:])
-
-            if page < 0 or page > max_page:
-                self.redirect('/static/pages/404.html')
-                return
-
-        posts = all_posts.order('-date').fetch(config.posts_per_page,
-                offset = page * config.posts_per_page)
-
-        show_prev = not (page == 0)
+        show_prev = not (page == 1)
         show_next = not (page == max_page)
-
-        if not posts:
-            show_prev = False
-            show_next = False
-
-        self.template_values.update({
-                'posts': posts,
-                'show_prev': show_prev,
-                'show_next': show_next,
-                'show_page_panel': show_prev or show_next,
-                'prev': page - 1,
-                'next': page + 1,
-                'max_page': max_page,
-                })
-
-        self.render(self.theme.postlist_page)
-
-
-class PostListTag(BaseRequestHandler):
-
-    def get(self):
-        self.current_page = "home"
-        page = 0
-        show_prev = False
-        show_next = False
-
-        params = self.request.path[6:].split('/')
-        if len(params) == 4:
-            page = int(params[3])
-
-        # why i need unquote twice here? is it a bug?
-        tag = urllib2.unquote(urllib2.unquote(params[1])).decode('utf-8')
-
-        all_posts = Post.all().filter('tags =', tag)
-        max_page = (all_posts.count() - 1) / config.posts_per_page
-        posts = all_posts.order('-date').fetch(config.posts_per_page,
-                offset = page * config.posts_per_page)
-
-        show_prev = not (page == 0)
-        show_next = not (page == max_page)
-
-        if not posts:
-            self.redirect('/static/pages/404.html')
+        page_list = []
+        cnt = 1
+        while cnt < max_page:
+            page_list.append(cnt)
+            cnt += 1
 
         self.template_values.update({
                 'tag': tag,
                 'posts': posts,
+                'post_count': all_posts.count(),
                 'show_prev': show_prev,
                 'show_next': show_next,
-                'show_page_panel': show_prev or show_next,
                 'prev': page - 1,
                 'next': page + 1,
+                'page': page,
                 'max_page': max_page,
+                'page_list': page_list,
                 })
-
         self.render(self.theme.postlist_page)
 
 
@@ -424,8 +399,8 @@ def main():
                 ('/blog', PostList),
                 ('/blog/', PostList),
                 ('/blog/page/\\d+', PostList),
-                ('/blog/tag/.+/page/\\d+', PostListTag),
-                ('/blog/tag/.+', PostListTag),
+                ('/blog/tag/.+/page/\\d+', PostList),
+                ('/blog/tag/.+', PostList),
                 ('/blog/post/\\d+', ViewPost),
                 ('/blog/newpost', NewPost),
                 ('/blog/newcomment', NewComment),

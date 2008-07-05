@@ -13,18 +13,26 @@
 {% for post in posts %}
 {% include theme.post_item %}
 {% endfor %}
-{% if show_page_panel %}
 <br />
 <div id="page_panel">
+{% if tag %}标签: {{ tag }}{% endif %} 共有文章{{ post_count }}篇 第({{ page }}/{{max_page}})页
 {% if show_prev %}
-<a href="/blog/{% if tag %}tag/{{ tag }}/{% endif %}page/{{ prev }}"><span style="font-size:9px;">&lt;&lt;</span>上一页</a>
+<a href="/blog/{% if tag %}tag/{{ tag }}/{% endif %}page/1">首页</a>
+<a href="/blog/{% if tag %}tag/{{ tag }}/{% endif %}page/{{ prev }}">上一页</a>
+{% else %}
+首页
+上一页
 {% endif %}
-{% if show_prev and show_next %}
--
-{% endif %}
+{% for page_cnt in page_list %}
+<a href="/blog/{% if tag %}tag/{{ tag }}/{% endif %}page/{{ page_cnt }}">{{ page_cnt }}</a>
+{% endfor %}
+...
 {% if show_next %}
-<a href="/blog/{% if tag %}tag/{{ tag }}/{% endif %}page/{{ next }}">下一页<span style="font-size:9px;">&gt;&gt;</span></a>
+<a href="/blog/{% if tag %}tag/{{ tag }}/{% endif %}page/{{ next }}">下一页</a>
+<a href="/blog/{% if tag %}tag/{{ tag }}/{% endif %}page/{{max_page}}">末页</a>
+{% else %}
+下一页
+末页
 {% endif %}
 </div>
-{% endif %}
 {% endblock %}
