@@ -27,7 +27,7 @@ class BaseRequestHandler(webapp.RequestHandler):
         else:
             self.user = None
         # Access Logger
-        self.log()
+        #self.log()
 
         self.is_admin = users.is_current_user_admin()
         self.widget = Widget(self)
