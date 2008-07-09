@@ -51,12 +51,12 @@ def tags(values):
 
 
 def bloglogger(values):
-    accessLogger_cnt = AccessLogger.all().count()
+    #accessLogger_cnt = AccessLogger.all().count()
     post_cnt = Post.all().count()
     comment_cnt = Comment.all().count()
 
     values.update({
-        'accessLogger_cnt': accessLogger_cnt,
+        #'accessLogger_cnt': accessLogger_cnt,
         'post_cnt': post_cnt,
         'comment_cnt': comment_cnt,
         })
