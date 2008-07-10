@@ -15,7 +15,6 @@
 		{% block style %}
 		<link rel="stylesheet" type="text/css" href="{{ theme.dir }}/style.css" />
 		{% endblock %}
-		<script type="text/javascript" src="/static/scripts/google-analytics.js"></script>
 		<script type="text/javascript" src="/static/scripts/jquery.js"></script>
 		<script type="text/javascript" src="/static/scripts/blog.js"></script>
 		{% block scripts %}
@@ -46,6 +45,7 @@
 				{% include theme.menu_part %}
 				{% endblock %}
 			</div>
+
 			<div id="page">
 				<div id="content">
 					{% block content %}
