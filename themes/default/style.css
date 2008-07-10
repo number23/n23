@@ -83,6 +83,7 @@ div#wrapper {
 #menu li a:hover span { color: #000; background: url(images/menuright.gif) no-repeat right bottom; }
 #menu .selected a span { color: #000; background: url(images/menuright.gif) no-repeat right bottom; }
 
+/*
 #content {
 	float: left;
 	width: 730px;
@@ -91,6 +92,25 @@ div#wrapper {
 div.sidebar {
 	float: right;
 	width: 200px;
+}
+
+*/
+
+#page {
+	width: 940px;
+	margin: 0 auto;
+}
+
+#content {
+	float: left;
+	width: 700px;
+	padding: 0px 10px 0px 10px;
+}
+
+#sidebar {
+	float: right;
+	width: 200px;
+	padding: 0px 0px 0px 0px;
 }
 
 #footer {
@@ -106,7 +126,7 @@ div.sidebar {
 }
 
 div.post {
-	margin: 30px 20px 10px 0pt;
+	margin: 30px 0px 10px 0pt;
 	padding: 2px;
 }
 
@@ -121,7 +141,7 @@ div.tags a {
 
 div.comment {
 	background-color : #f4f4f4;
-	margin: 10px 20px 50px 0pt;
+	margin: 10px 0px 50px 0pt;
 	border-bottom: 1px dotted;
 	padding: 10px;
 }
