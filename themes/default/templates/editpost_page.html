@@ -29,7 +29,7 @@ tinyMCE.init({
 {% endblock %}
 
 {% block content %}
-<div class="post">
+<div class="newOreditpost">
 {% ifequal mode "edit" %} {% include theme.editpost_form %} {% endifequal %}
 {% ifequal mode "new" %} {% include theme.newpost_form %} {% endifequal %}
 </div>
