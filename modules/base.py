@@ -27,7 +27,8 @@ class BaseRequestHandler(webapp.RequestHandler):
         else:
             self.user = None
         # Access Logger
-        self.log()
+        #self.log()
+        # disable at 2008-07-11, use google analytics tool
 
         self.is_admin = users.is_current_user_admin()
         self.widget = Widget(self)
