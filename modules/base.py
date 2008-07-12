@@ -4,7 +4,7 @@ from google.appengine.ext import webapp
 from google.appengine.ext.webapp import template
 
 from config import global_vars, config
-from models import User, Post, Admin, AccessLogger, Comment, Tag
+from models import User, Post, Admin, Comment, Tag
 from filter import default_filter
 from theme import Theme
 import widget
@@ -26,9 +26,6 @@ class BaseRequestHandler(webapp.RequestHandler):
                         User(user = self.login_user)
         else:
             self.user = None
-        # Access Logger
-        #self.log()
-        # disable at 2008-07-11, use google analytics tool
 
         self.is_admin = users.is_current_user_admin()
         self.widget = Widget(self)
@@ -92,13 +89,14 @@ class BaseRequestHandler(webapp.RequestHandler):
         else:
             self.redirect(redirect_url)
             return False
-
+'''
     def log(self):
         al = AccessLogger(
                 user = users.get_current_user(),
                 remoteAddr = self.request.remote_addr,
                 queryPath = self.request.path)
         al.put()
+'''
 
 
 class Widget:
