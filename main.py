@@ -15,7 +15,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# $Id$
+# $Id: main.py 4308 2007-12-22 09:28:08Z tsung $
 
 
 import os
