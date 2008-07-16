@@ -15,9 +15,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-# $Id: Id.py 1457 2006-08-23 02:12:12Z N23 $
-
-
+# $Id$
 
 import os
 import wsgiref.handlers
