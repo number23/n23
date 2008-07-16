@@ -11,7 +11,7 @@ class MainPage(webapp.RequestHandler):
     def get(self):
         template_values = {}
 
-        path = os.path.join(os.path.dirname(__file__), 'index.html')
+        path = os.path.join(os.path.dirname(__file__), 'static/pages/index.html')
         self.response.out.write(template.render(path, template_values))
 
 
