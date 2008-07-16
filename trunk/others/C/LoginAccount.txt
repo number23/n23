@@ -1,0 +1,7 @@
+[mail]
+host = smtp.qq.com
+port = 25
+user = ***
+pass = ***
+fr = No.0023@qq.com
+to = No.0023@gmail.com
