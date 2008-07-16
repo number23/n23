@@ -14,9 +14,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 #
-# $Id$
+# $Id: Id.py 1457 2006-08-23 02:12:12Z N23 $
 
 
 
