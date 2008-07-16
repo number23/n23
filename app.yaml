@@ -6,19 +6,22 @@ api_version: 1
 handlers:
 
 - url: /blog
-  script: blog.py
+  script: apps/blog.py
 
 - url: /blog/.*
-  script: blog.py
+  script: apps/blog.py
 
 - url: /themes/.+
-  script: cache.py
-
-#- url: /static
-#  static_dir: static
+  script: apps/cache.py
 
 - url: /static/.+
-  script: cache.py
+  script: apps/cache.py
+
+- url: /phoneBook/(.*)
+  script: apps/phoneBook.py
+
+- url: /(.*)
+  script: apps/main.py
 
 - url: /favicon.ico
   static_files: static/images/favicon.ico
@@ -40,16 +43,11 @@ handlers:
   script: $PYTHON_LIB/google/appengine/ext/admin
   login: admin
 
+#- url: /static
+#  static_dir: static
+
 #- url: /fetch.py
 #  script: fetch.py
 
-- url: /zipme
-  script: zipme.py
-
-- url: /phoneBook/(.*)
-  script: phoneBook.py
-
-- url: /(.*)
-  script: main.py
-
-
+#- url: /zipme
+#  script: zipme.py
