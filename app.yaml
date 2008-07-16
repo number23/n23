@@ -6,22 +6,22 @@ api_version: 1
 handlers:
 
 - url: /blog
-  script: apps/blog.py
+  script: blog.py
 
 - url: /blog/.*
-  script: apps/blog.py
+  script: blog.py
 
 - url: /themes/.+
-  script: apps/cache.py
+  script: cache.py
 
 - url: /static/.+
-  script: apps/cache.py
+  script: cache.py
 
 - url: /phoneBook/(.*)
-  script: apps/phoneBook.py
+  script: phoneBook.py
 
 - url: /(.*)
-  script: apps/main.py
+  script: main.py
 
 - url: /favicon.ico
   static_files: static/images/favicon.ico
