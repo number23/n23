@@ -20,19 +20,19 @@ handlers:
 - url: /static/.+
   script: cache.py
 
-- url: /favicon\.ico
+- url: /favicon.ico
   static_files: static/images/favicon.ico
   upload: static/images/favicon.ico
 
-- url: /robots\.txt
+- url: /robots.txt
   static_files: robots.txt
   upload: robots.txt
 
-- url: /google144e416da36fc6d1\.html
+- url: /google144e416da36fc6d1.html
   static_files: static/pages/google144e416da36fc6d1.html
   upload: static/pages/google144e416da36fc6d1.html
 
-- url: /sitemap\.xml
+- url: /sitemap.xml
   static_files: sitemap.xml
   upload: sitemap.xml
 

@@ -1,13 +1,15 @@
 body {
-  font-family: Verdana,Arial,Helvetica; font-size: 0.77em; 
+  font-family: Arial,sans-serifarial,Verdana,Helvetica;
+  font-size: 12px;
   line-height: 20px;
   background: #fff url(images/bg.jpg) repeat-x;
-  margin:0; padding:0;
+  margin: 0; 
+  padding:0;
 }
 
 form {
-	margin:0px;
-	padding:0px;
+	margin: 0px;
+	padding: 0px;
 }
 
 h1 { font-size: 20px; color: #FF7D00; margin: 0px 0px 5px 0px; }
@@ -201,7 +203,7 @@ blockquote {
 .meta .date, .meta .author {
   border-right: none;
 }
-
+
 .sidebar ul {
 	width: 200px;
 	padding: 0;
