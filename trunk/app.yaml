@@ -43,6 +43,21 @@ handlers:
   script: $PYTHON_LIB/google/appengine/ext/admin
   login: admin
 
+skip_files: |
+ ^(.*/)?(
+ (app\.yaml)|
+ (app\.yml)|
+ (index\.yaml)|
+ (index\.yml)|
+ (#.*#)|
+ (.*~)|
+ (.*\.py[co])|
+ (.*/RCS/.*)|
+ (\..*)|
+ (.*/svn/.*)|
+ (others/.*)|
+ )$
+
 #- url: /static
 #  static_dir: static
 
