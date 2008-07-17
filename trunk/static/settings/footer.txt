@@ -1,0 +1,13 @@
+<script type="text/javascript"><!--
+google_ad_client = "pub-9368669963238958";
+/* 728x15, 创建于 08-7-10 */
+google_ad_slot = "6137989109";
+google_ad_width = 728;
+google_ad_height = 15;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<br/><br/>
