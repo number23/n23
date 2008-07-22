@@ -20,9 +20,6 @@ handlers:
 - url: /phoneBook/(.*)
   script: phoneBook.py
 
-- url: /(.*)
-  script: main.py
-
 - url: /favicon.ico
   static_files: static/images/favicon.ico
   upload: static/images/favicon.ico
@@ -42,6 +39,9 @@ handlers:
 - url: /_admin/.*
   script: $PYTHON_LIB/google/appengine/ext/admin
   login: admin
+
+- url: /(.*)
+  script: main.py
 
 skip_files: |
  ^(.*/)?(
