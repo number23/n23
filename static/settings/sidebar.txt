@@ -53,11 +53,11 @@ Email: No.0023@gmail.com
 
 	<h2>订阅博客</h2>
     <ul>
-    <li><a target="_blank" href="http://n23.appspot.com/blog/feed"><img border="0" alt="订阅我的博客" src="/static/images/logo/sub_rss.gif"/></a></li>
-    <li><a rel="nofollow" target="_blank" href="http://www.google.com/reader/view/feed/http://n23.appspot.com/blog/feed"><img border="0" alt="通过Google订阅" src="/static/images/logo/sub_google.gif"/></a></li>
-    <li><a rel="nofollow" target="_blank" href="http://add.my.yahoo.com/rss?url=http://n23.appspot.com/blog/feed"><img border="0" alt="通过My yahoo订阅" src="/static/images/logo/sub_yahoo.gif"/></a></li>
-    <li><a rel="nofollow" target="_blank" href="http://www.xianguo.com/subscribe.php?url=http://n23.appspot.com/blog/feed"><img border="0" alt="通过鲜果订阅" src="/static/images/logo/sub_xianguo.gif"/></a></li>
-    <li><a rel="nofollow" target="_blank" href="http://www.zhuaxia.com/add_channel.php?url=http://n23.appspot.com/blog/feed"><img border="0" alt="通过抓虾订阅" src="/static/images/logo/sub_zhuaxia.gif"/></a></li>
+    <li><a target="_blank" href="http://feedproxy.google.com/feedburner/Glbo"><img border="0" alt="订阅我的博客" src="/static/images/logo/sub_rss.gif"/></a></li>
+    <li><a rel="nofollow" target="_blank" href="http://www.google.com/reader/view/feed/http://feedproxy.google.com/feedburner/Glbo"><img border="0" alt="通过Google订阅" src="/static/images/logo/sub_google.gif"/></a></li>
+    <li><a rel="nofollow" target="_blank" href="http://add.my.yahoo.com/rss?url=http://feedproxy.google.com/feedburner/Glbo"><img border="0" alt="通过My yahoo订阅" src="/static/images/logo/sub_yahoo.gif"/></a></li>
+    <li><a rel="nofollow" target="_blank" href="http://www.xianguo.com/subscribe.php?url=http://feedproxy.google.com/feedburner/Glbo"><img border="0" alt="通过鲜果订阅" src="/static/images/logo/sub_xianguo.gif"/></a></li>
+    <li><a rel="nofollow" target="_blank" href="http://www.zhuaxia.com/add_channel.php?url=http://feedproxy.google.com/feedburner/Glbo"><img border="0" alt="通过抓虾订阅" src="/static/images/logo/sub_zhuaxia.gif"/></a></li>
     </ul>
 </li>
 
