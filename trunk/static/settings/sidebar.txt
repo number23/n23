@@ -63,9 +63,6 @@ Email: No.0023@gmail.com
 
 {{ W.BlogLogger}}
 
-<h2>Google Calendar</h2>
-<iframe src="http://www.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showDate=0&amp;showTabs=0&amp;showCalendars=0&amp;height=300&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=no.0023%40gmail.com&amp;color=%23A32929&amp;ctz=Asia%2FShanghai" style=" border-width:0 " width="200" height="300" frameborder="0" scrolling="no"></iframe>
-
 <h2>Ads</h2>
 <script type="text/javascript"><!--
 google_ad_client = "pub-9368669963238958";
