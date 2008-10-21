@@ -1,0 +1,25 @@
+body {
+  font-family: Arial,sans-serifarial,Verdana,Helvetica;
+  font-size: 16px;
+  line-height: 20px;
+  margin: 0; 
+  padding: 0px 5px;
+}
+
+h1 { font-size: 20px; color: #FF7D00; margin: 0px 0px 5px 0px; }
+h2 { font-size: 18px; color: #098CD9; margin: 5px 0px 5px 0px; }
+
+a, .fakelink { text-decoration: none; color: #098CD9; cursor : pointer;}
+a:hover, .fakelink:hover { color: #FF7D00; }
+
+li {
+    height: 1.6em;
+    line-height: 1.6em;
+}
+
+#footer {
+	clear: both;
+	text-align : center;
+	font-size : 80%;
+	background-color : #f4f4f4;
+}

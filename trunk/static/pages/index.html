@@ -1,60 +1,27 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<title>23号的AppEngine</title>
-		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-		<meta name="generator" content="AppEngine on Google" />
-		<meta name="description" content="风吹过也要留下痕迹..." />
-		<meta name="keywords" content="关注OpenBSD, Python... No.0023@gmail.com" />
-		<meta name="author" contect="No.0023@gmail.com">
-		<meta name="robots" contect="all|none|index|noindex|follow|nofollow">
-		<link rel="icon" type="image/ico" href="/favicon.ico">
+{% extends 'base.html' %}
+{% block content %}
+<h2>My Application:</h2>
+<ul>
+  <li><a target="_blank" href="/blog">Blog</a></li>
+</ul>
 
-    <style type="text/css">
-    body {
-        padding-left: 5px;
-        padding-right: 5px;
-    }
-    li {
-        height: 1.6em;
-        line-height: 1.6em;
-    }
-    </style>
+<h2>Google Code:</h2>
+<ul>
+  <li><a target="_blank" href="http://code.google.com/p/n23">网站源码下载</a></li>
+  <li><a target="_blank" href="http://code.google.com/p/mylibs">My Library Project</a></li>
+  <li><a target="_blank" href="http://code.google.com/p/djangobbs">DjangoBBS</a></li>
+</ul>
 
-	</head>
-	<body>
-    <h2>My Application:</h2>
-    <ul>
-      <li><a href="/blog">Blog</a></li>
-    </ul>
+<h2>Bookmarks:</h2>
+<ul>
+  <li><a target="_blank" href="https://mail.google.com">Gmail</a></li>
+  <li><a target="_blank" href="http://mail.qq.com">QQMail</a></li>
+  <li><a target="_blank" href="http://www.openbsdonly.org">OpenBSDOnly.org</a></li>
+  <li><a target="_blank" href="http://bbs.chinaunix.net">ChinaUnix.net</a></li>
+  <li><a target="_blank" href="https://www.google.com/reader/view">Google Reader</a></li>
+  <li><a target="_blank" href="https://www.google.com/calendar/render">Google Calendar</a></li>
+  <li><a target="_blank" href="http://www.google.cn/dictionary">Google Dictionary</a></li>
+  <li><a target="_blank" href="http://www.google.com/coop/cse?cx=010919319338637993103:tbj32k05kdw&hl=zh-CN">23号搜索引擎</a></li>
+</ul>
+{% endblock %}
 
-    <h2>Google Code:</h2>
-    <ul>
-      <li><a target="_blank" href="http://code.google.com/p/n23">网站源码下载</a></li>
-      <li><a target="_blank" href="http://code.google.com/p/mylibs">My Library Project</a></li>
-      <li><a target="_blank" href="http://code.google.com/p/djangobbs">DjangoBBS</a></li>
-    </ul>
-
-    <h2>Bookmarks:</h2>
-    <ul>
-      <li><a target="_blank" href="https://mail.google.com">Gmail</a></li>
-      <li><a target="_blank" href="http://mail.qq.com">QQMail</a></li>
-      <li><a target="_blank" href="http://www.openbsdonly.org">OpenBSDOnly.org</a></li>
-      <li><a target="_blank" href="http://bbs.chinaunix.net">ChinaUnix.net</a></li>
-      <li><a target="_blank" href="https://www.google.com/reader/view">Google Reader</a></li>
-      <li><a target="_blank" href="https://www.google.com/calendar/render">Google Calendar</a></li>
-      <li><a target="_blank" href="http://www.google.cn/dictionary">Google Dictionary</a></li>
-      <li><a target="_blank" href="http://www.google.com/coop/cse?cx=010919319338637993103:tbj32k05kdw&hl=zh-CN">23号搜索引擎</a></li>
-    </ul>
-
-<script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-var pageTracker = _gat._getTracker("UA-4950427-1");
-pageTracker._initData();
-pageTracker._trackPageview();
-</script>
-	</body>
-</html>
