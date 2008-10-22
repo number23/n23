@@ -26,7 +26,13 @@ from google.appengine.ext.webapp import template
 class MainPage(webapp.RequestHandler):
 
     def get(self):
-        template_values = {}
+        img_list = os.listdir('static/images/OpenBSD')
+        img_data = 'var rotateDATA = [\n'
+        for img in img_list:
+            if img == '.svn': continue
+            img_data += '{imgSRC : "/static/images/OpenBSD/%s"},\n' % img
+        img_data = img_data[:-2] + '];\n'
+        template_values = {'img_data': img_data}
 
         path = os.path.join(os.path.dirname(__file__), 'static/pages/index.html')
         self.response.out.write(template.render(path, template_values))
