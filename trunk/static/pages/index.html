@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
+<div id="L">
 <h2>My Application:</h2>
 <ul>
-  <li><a target="_blank" href="/blog">Blog</a></li>
+  <li><a target="_blank" href="/blog">23号博客</a></li>
 </ul>
 
 <h2>Google Code:</h2>
@@ -23,5 +24,27 @@
   <li><a target="_blank" href="http://www.google.cn/dictionary">Google Dictionary</a></li>
   <li><a target="_blank" href="http://www.google.com/coop/cse?cx=010919319338637993103:tbj32k05kdw&hl=zh-CN">23号搜索引擎</a></li>
 </ul>
+</div>
+
+<div id="R">
+<script type="text/javascript" src="/static/scripts/rotatorImg.js"></script>
+<script type="text/javascript">
+var rotateDATA = [
+  {imgSRC : '/static/images/OpenBSD/bbs.png'},
+  {imgSRC : '/static/images/OpenBSD/desktop.png'},
+  {imgSRC : '/static/images/OpenBSD/f2.png'},
+  {imgSRC : '/static/images/OpenBSD/Firefox.png'},
+  {imgSRC : '/static/images/OpenBSD/menu.png'},
+  {imgSRC : '/static/images/OpenBSD/office.png'},
+  {imgSRC : '/static/images/OpenBSD/pflogI.png'},
+  {imgSRC : '/static/images/OpenBSD/pftop.png'},
+  {imgSRC : '/static/images/OpenBSD/pidgin.png'}
+];
+
+var rotator = new ETNGrotator(rotateDATA, 'rotateIMG', 700, 500);
+rotator.loop('rotator');
+</script>
+</div>
+
 {% endblock %}
 
