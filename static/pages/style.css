@@ -2,15 +2,15 @@ body {
   font-family: Arial,sans-serifarial,Verdana,Helvetica;
   font-size: 16px;
   line-height: 20px;
-  margin: 5px 5px; 
-  padding: 5px 5px;
+  /*margin: 5px 5px;*/ 
+  /*padding: 5px 5px;*/
 }
 
 h1 { font-size: 20px; color: #FF7D00;}
-h2 { font-size: 18px; color: #098CD9;}
+h2 { font-size: 18px; color: #3366CC; background: #C3D9FF; margin: 0px;}
 
-a, .fakelink { text-decoration: none; color: #098CD9; cursor : pointer;}
-a:hover, .fakelink:hover { color: #FF7D00; }
+a, .fakelink { text-decoration: none; color: #2C70C0; cursor: pointer;}
+a:hover, .fakelink:hover { text-decoration: underline; color: #FF7D00; }
 
 li {
     height: 1.6em;
