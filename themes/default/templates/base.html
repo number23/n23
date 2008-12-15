@@ -25,9 +25,9 @@
 			<div id="header">
 				<div id="login">
 					{% if self.is_login %}
-					{{ self.user }} | <a href="/blog/logout">登出</a>
+					{{ self.user }} | <a href="/blog/logout" title="登出您的google帐号">登出</a>
 					{% else %}
-					<a href="/blog/login">登录</a>
+					<a href="/blog/login" title="登录, 使用google帐号登录后您可以发表评论">登录</a>
                     使用google帐号登录后您可以发表评论
 					{% endif %}
 				</div>

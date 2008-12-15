@@ -1,10 +1,10 @@
 <div class="post" id="p{{ post.key.id }}">
-	<h2 class="title"><a href="/blog/post/{{ post.key.id }}">{{ post.title|escape }}</a></h2>
+	<h2 class="title"><a href="/blog/post/{{ post.key.id }}" title="{{ post.title|escape }}">{{ post.title|escape }}</a></h2>
 	{% if post.tags %}
 	<div class="tags">
 		Tags:
 	{% for tag in post.tags %}
-	<a href="/blog/tag/{{ tag }}">{{ tag }}</a>{% if not forloop.last %}, {% endif %}
+	<a href="/blog/tag/{{ tag }}" title="tag: {{ tag }}">{{ tag }}</a>{% if not forloop.last %}, {% endif %}
 	{% endfor %}
 	</div>
 	{% endif %}
@@ -12,7 +12,7 @@
 	{% comment %}<div>{{ post.content|wiki}}</div> {% endcomment %}
 	<div class="entry">{{ post.content }}</div>
 	<p class="meta">
-		<span><a href="/blog/post/{{ post.key.id }}#comments"> {{ post.comment_count }} </a></span>
+		<span><a href="/blog/post/{{ post.key.id }}#comments" title="comment"> {{ post.comment_count }} </a></span>
 		{% if self.is_admin %}
 		<span class="fakelink" onclick="DeletePost('{{ post.key.id }}')">Delete</span>
 		<span class="fakelink" onclick="EditPost('{{ post.key.id }}')">Edit</span>
