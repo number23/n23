@@ -45,6 +45,16 @@ handlers:
   upload: static/sitemap.xml
   secure: always
 
+- url: /rpc_relay.html
+  static_files: static/pages/rpc_relay.html
+  upload: static/pages/rpc_relay.html
+  secure: always
+
+- url: /canvas.html
+  static_files: static/pages/canvas.html
+  upload: static/pages/canvas.html
+  secure: always
+
 - url: /_admin/.*
   script: $PYTHON_LIB/google/appengine/ext/admin
   login: admin
