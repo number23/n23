@@ -7,62 +7,62 @@ handlers:
 
 - url: /blog
   script: blog.py
-  secure: always
+#  secure: always
 
 - url: /blog/.*
   script: blog.py
-  secure: always
+#  secure: always
 
 - url: /themes/.+
   script: cache.py
-  secure: always
+#  secure: always
 
 - url: /static/.+
   script: cache.py
-  secure: always
+#  secure: always
 
 - url: /phoneBook/(.*)
   script: phoneBook.py
-  secure: always
+#  secure: always
 
 - url: /favicon.ico
   static_files: static/images/favicon.ico
   upload: static/images/favicon.ico
-  secure: always
+#  secure: always
 
 - url: /robots.txt
   static_files: static/robots.txt
   upload: static/robots.txt
-  secure: always
+#  secure: always
 
 - url: /google144e416da36fc6d1.html
   static_files: static/pages/google144e416da36fc6d1.html
   upload: static/pages/google144e416da36fc6d1.html
-  secure: always
+#  secure: always
 
 - url: /sitemap.xml
   static_files: static/sitemap.xml
   upload: static/sitemap.xml
-  secure: always
+#  secure: always
 
 - url: /rpc_relay.html
   static_files: static/pages/rpc_relay.html
   upload: static/pages/rpc_relay.html
-  secure: always
+#  secure: always
 
 - url: /canvas.html
   static_files: static/pages/canvas.html
   upload: static/pages/canvas.html
-  secure: always
+#  secure: always
 
 - url: /_admin/.*
   script: $PYTHON_LIB/google/appengine/ext/admin
   login: admin
-  secure: always
+#  secure: always
 
 - url: /(.*)
   script: main.py
-  secure: always
+#  secure: always
 
 skip_files: |
  ^(.*/)?(
